@@ -1,0 +1,6 @@
+version: "Apple Swift version 6.0.3 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)"
+options: "f1af844df4a9c7c28f782ee202588d7c0413f178c49f26b04552d9b71142e17f"
+build_start_time: [1738311173, 907989000]
+build_end_time: [1738311175, 496221000]
+inputs:
+  "/Users/arihe/Developer/RepoToText/Sources/RepoToText.swift": [1738310592, 253581872]

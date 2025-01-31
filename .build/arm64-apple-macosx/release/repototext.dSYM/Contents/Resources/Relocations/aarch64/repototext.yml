@@ -1,0 +1,17 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext'
+relocations:
+  - { offset: 0x888E7, size: 0x8, addend: 0x0, symName: '_$s10RepoToTextAAV4mainyyFZSSyXEfU_', symObjAddr: 0x0, symBinAddr: 0x1000022D8, symSize: 0x37C }
+  - { offset: 0x8897C, size: 0x8, addend: 0x0, symName: _RepoToText_main, symObjAddr: 0xA94, symBinAddr: 0x100002D6C, symSize: 0x88 }
+  - { offset: 0x88A18, size: 0x8, addend: 0x0, symName: '_$s10RepoToText16processDirectory2at4intoySS_So12NSFileHandleCtF', symObjAddr: 0x37C, symBinAddr: 0x100002654, symSize: 0x718 }
+  - { offset: 0x88CC1, size: 0x8, addend: 0x0, symName: '_$sS2cMScAsWl', symObjAddr: 0xB1C, symBinAddr: 0x100002DF4, symSize: 0x48 }
+  - { offset: 0x88CE0, size: 0x8, addend: 0x0, symName: ___swift_instantiateConcreteTypeFromMangledName, symObjAddr: 0x1204, symBinAddr: 0x1000034DC, symSize: 0x40 }
+  - { offset: 0x88CF4, size: 0x8, addend: 0x0, symName: '_$sS2SSysWl', symObjAddr: 0x1244, symBinAddr: 0x10000351C, symSize: 0x44 }
+  - { offset: 0x88D08, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataVSgWOe', symObjAddr: 0x1288, symBinAddr: 0x100003560, symSize: 0x14 }
+  - { offset: 0x88D1C, size: 0x8, addend: 0x0, symName: '_$s10Foundation4DataV15_RepresentationOWOe', symObjAddr: 0x129C, symBinAddr: 0x100003574, symSize: 0x44 }
+  - { offset: 0x88D30, size: 0x8, addend: 0x0, symName: '_$sypSgWOb', symObjAddr: 0x12E0, symBinAddr: 0x1000035B8, symSize: 0x48 }
+  - { offset: 0x88D44, size: 0x8, addend: 0x0, symName: '_$sypSgWOh', symObjAddr: 0x1328, symBinAddr: 0x100003600, symSize: 0x40 }
+  - { offset: 0x88E77, size: 0x8, addend: 0x0, symName: '_$s10RepoToTextAAV4mainyyFZSSyXEfU_', symObjAddr: 0x0, symBinAddr: 0x1000022D8, symSize: 0x37C }
+  - { offset: 0x8902B, size: 0x8, addend: 0x0, symName: '_$s10RepoToTextAAV4mainyyFZTf4d_n', symObjAddr: 0xB64, symBinAddr: 0x100002E3C, symSize: 0x6A0 }
+...
