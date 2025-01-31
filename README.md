@@ -122,7 +122,7 @@ repototext ~/Projects/HelloWorld ~/Desktop/ExportedHelloWorld.txt
    - Check read permissions on that file or directory.
 
 5. **Does this work on Linux?**
-   - Yes, if Swift 5.5+ is installed. The steps are the same (clone, swift build -c release, etc.).
+   - Yes, if Swift 6.0+ is installed. The steps are the same (clone, swift build -c release, etc.).
 
 ## Troubleshooting
 

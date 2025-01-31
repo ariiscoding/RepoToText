@@ -1,0 +1,691 @@
+Repository export for directory: .
+
+=== ./RepoToText_RepoContents.txt ===
+Repository export for directory: .
+
+=== ./RepoToText_RepoContents.txt ===
+
+=== ./README.md ===
+# RepoToText
+
+**RepoToText** is a Swift-based command-line tool that scans a directory (e.g., a code repository) and outputs one consolidated `.txt` file containing each file's path and contents. Great for sharing repo structures with Large Language Models or collaborators.
+
+## Table of Contents
+
+1. [Features](#features)  
+2. [Requirements](#requirements)  
+3. [Installation](#installation)  
+    - [Build with SwiftPM (Recommended)](#build-with-swiftpm-recommended)  
+    - [Optional: Copy binary to /usr/local/bin](#optional-copy-binary-to-usrlocalbin)  
+4. [Usage](#usage)  
+    - [Basic Use](#basic-use)  
+    - [Custom Output File](#custom-output-file)  
+5. [FAQ](#faq)  
+6. [Troubleshooting](#troubleshooting)  
+7. [License](#license)  
+8. [Additional Notes](#additional-notes)
+
+---
+
+## Features
+
+- Recursively exports directories and files.  
+- Produces a single `.txt` with file paths & contents.  
+- Easily share or archive a project's structure.  
+
+---
+
+## Requirements
+
+- **macOS or Linux** with Swift 5.5+ installed.  
+  - Check by running:  
+    ```bash
+    swift --version
+    ```
+
+---
+
+## Installation
+
+### Build with SwiftPM (Recommended)
+
+1. **Clone the Repo**:
+   ```bash
+   git clone https://github.com/YourUsername/RepoToText.git
+   cd RepoToText
+   ```
+
+2. **Build in release mode**:
+   ```bash
+   swift build -c release
+   ```
+
+3. **The final binary will be located at**:
+   ```bash
+   .build/release/repototext
+   ```
+
+### Optional: Copy binary to /usr/local/bin
+
+For easier usage:
+
+```zsh
+sudo cp .build/release/repototext /usr/local/bin
+```
+
+Now you can run `repototext` from anywhere.
+
+> Note: If `/usr/local/bin` isn't in your `$PATH`, you'll need to add this line to your `~/.zshrc`:
+> ```zsh
+> export PATH="/usr/local/bin:$PATH"
+> ```
+> Then run `source ~/.zshrc` to apply the changes.
+
+## Usage
+
+### Basic Use
+
+Run it with two arguments:
+
+```bash
+repototext <directory-to-export>
+```
+
+If `<directory-to-export>` is `~/Projects/HelloWorld`, the tool creates `HelloWorld_RepoContents.txt` in your current working directory.
+
+Example:
+```bash
+repototext ~/Projects/HelloWorld
+```
+
+### Custom Output File
+
+Optionally specify an output path:
+
+```bash
+repototext <directory-to-export> <path/to/output.txt>
+```
+
+Example:
+```bash
+repototext ~/Projects/HelloWorld ~/Desktop/ExportedHelloWorld.txt
+```
+
+## FAQ
+
+1. **Can I exclude specific files or folders?**
+   - Not yet. You can modify the processDirectory function if you want to skip certain patterns.
+
+2. **The output file is huge.**
+   - Large repos produce large files. Consider ignoring big files or only scanning subfolders.
+
+3. **Permission denied when running repototext.**
+   - Make sure the file is executable:
+     ```bash
+     chmod +x .build/release/repototext
+     ```
+   - Or install it in `/usr/local/bin`.
+
+4. **I see "Could not read file: …".**
+   - Check read permissions on that file or directory.
+
+5. **Does this work on Linux?**
+   - Yes, if Swift 6.0+ is installed. The steps are the same (clone, swift build -c release, etc.).
+
+## Troubleshooting
+
+- **Command not found**: Did you copy the binary to `/usr/local/bin` (or another directory in your `$PATH`)?
+  - For zsh users: Make sure `/usr/local/bin` is in your PATH by checking `echo $PATH`
+  - If needed, add it to your `~/.zshrc` as shown in the installation section
+- **Permissions**: Use `chmod +x .build/release/repototext`
+- **Swift version too old**: Update your Swift toolchain if you see errors about language compatibility
+
+## License
+
+This tool is distributed under the MIT License. You're free to use, modify, and distribute it.
+
+## Additional Notes
+
+- **Security & Privacy**: The script dumps everything (including potential secrets) in plain text. Be mindful of what you share.
+- **Fork & Customize**: If you'd like to skip large binaries or certain folders, you can adapt the processDirectory function.
+
+---
+
+### **Usage Summary**
+
+1. **Clone** the repo containing `Package.swift` and the `Sources/` folder.  
+2. Run `swift build -c release`.  
+3. You'll get an executable in `.build/release/repototext`.  
+4. (Optional) Install to `/usr/local/bin` so you can just run `repototext` from anywhere.
+
+=== ./RepoToText.xcodeproj ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.pbxproj ===
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C15FFAEA2D4B7EBF009F8FA6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C15FFAEC2D4B7EBF009F8FA6 /* RepoToText */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RepoToText; sourceTree = BUILT_PRODUCTS_DIR; };
+		C15FFAFA2D4B7F1B009F8FA6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C15FFB142D4CBA81009F8FA6 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C15FFAEE2D4B7EBF009F8FA6 /* Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C15FFAE92D4B7EBF009F8FA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C15FFAE32D4B7EBF009F8FA6 = {
+			isa = PBXGroup;
+			children = (
+				C15FFB142D4CBA81009F8FA6 /* Package.swift */,
+				C15FFAEE2D4B7EBF009F8FA6 /* Sources */,
+				C15FFAED2D4B7EBF009F8FA6 /* Products */,
+				C15FFAFA2D4B7F1B009F8FA6 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		C15FFAED2D4B7EBF009F8FA6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C15FFAEC2D4B7EBF009F8FA6 /* RepoToText */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C15FFAEB2D4B7EBF009F8FA6 /* RepoToText */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C15FFAF32D4B7EBF009F8FA6 /* Build configuration list for PBXNativeTarget "RepoToText" */;
+			buildPhases = (
+				C15FFAE82D4B7EBF009F8FA6 /* Sources */,
+				C15FFAE92D4B7EBF009F8FA6 /* Frameworks */,
+				C15FFAEA2D4B7EBF009F8FA6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C15FFAEE2D4B7EBF009F8FA6 /* Sources */,
+			);
+			name = RepoToText;
+			packageProductDependencies = (
+			);
+			productName = RepoToText;
+			productReference = C15FFAEC2D4B7EBF009F8FA6 /* RepoToText */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C15FFAE42D4B7EBF009F8FA6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					C15FFAEB2D4B7EBF009F8FA6 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+				};
+			};
+			buildConfigurationList = C15FFAE72D4B7EBF009F8FA6 /* Build configuration list for PBXProject "RepoToText" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C15FFAE32D4B7EBF009F8FA6;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C15FFAED2D4B7EBF009F8FA6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C15FFAEB2D4B7EBF009F8FA6 /* RepoToText */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C15FFAE82D4B7EBF009F8FA6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C15FFAF12D4B7EBF009F8FA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C15FFAF22D4B7EBF009F8FA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C15FFAF42D4B7EBF009F8FA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C15FFAF52D4B7EBF009F8FA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C15FFAE72D4B7EBF009F8FA6 /* Build configuration list for PBXProject "RepoToText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C15FFAF12D4B7EBF009F8FA6 /* Debug */,
+				C15FFAF22D4B7EBF009F8FA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C15FFAF32D4B7EBF009F8FA6 /* Build configuration list for PBXNativeTarget "RepoToText" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C15FFAF42D4B7EBF009F8FA6 /* Debug */,
+				C15FFAF52D4B7EBF009F8FA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C15FFAE42D4B7EBF009F8FA6 /* Project object */;
+}
+
+=== ./RepoToText.xcodeproj/xcuserdata ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/xcuserdata/arihe.xcuserdatad ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/xcuserdata/arihe.xcuserdatad/xcschemes ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/xcuserdata/arihe.xcuserdatad/xcschemes/xcschememanagement.plist ===
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>RepoToText.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
+
+=== ./RepoToText.xcodeproj/project.xcworkspace ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/contents.xcworkspacedata ===
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "self:">
+   </FileRef>
+</Workspace>
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcuserdata ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcuserdata/arihe.xcuserdatad ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcuserdata/arihe.xcuserdatad/UserInterfaceState.xcuserstate ===
+[Could not read file: Error Domain=NSCocoaErrorDomain Code=259 "The file couldn’t be opened because it isn’t in the correct format."]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcshareddata ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcshareddata/swiftpm ===
+[Directory]
+
+=== ./RepoToText.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/configuration ===
+[Directory]
+
+=== ./Package.swift ===
+// swift-tools-version: 6.0
+// The swift-tools-version declares the minimum version of Swift required to build this package.
+
+import PackageDescription
+
+let package = Package(
+    name: "RepoToText",
+    platforms: [
+        // Adjust if you want a different minimum macOS version
+        .macOS(.v10_15)
+    ],
+    products: [
+        // Creates an executable named "repototext"
+        .executable(name: "repototext", targets: ["RepoToText"])
+    ],
+    dependencies: [
+        // Add any external dependencies here, e.g.,
+        // .package(url: "https://github.com/Some/Package", from: "1.0.0"),
+    ],
+    targets: [
+        .executableTarget(
+            name: "RepoToText",
+            dependencies: [
+                // List target dependencies if needed
+            ]
+//            path: "Sources/RepoToText" 
+        )
+    ]
+)
+
+=== ./Sources ===
+[Directory]
+
+=== ./Sources/RepoToText.swift ===
+import Foundation
+
+@main
+struct RepoToText {
+    static func main() {
+        // A simple approach to parse arguments & flags
+        let allArgs = CommandLine.arguments.dropFirst() // drop the app name
+        var nonFlagArgs = [String]()
+        var omitHidden = true  // Default: skip hidden items
+        
+        // Parse flags vs. non-flag arguments
+        for arg in allArgs {
+            switch arg {
+            case "--include-hidden":
+                omitHidden = false
+            default:
+                nonFlagArgs.append(arg)
+            }
+        }
+        
+        // Now interpret nonFlagArgs
+        guard nonFlagArgs.count >= 1 else {
+            print("""
+            Usage: repototext [--include-hidden] <directory-path> [output-file-path]
+
+            By default, hidden directories/files are omitted.
+            Use --include-hidden to include them.
+            """)
+            exit(1)
+        }
+        
+        // 1. Directory to scan
+        let targetDirectory = nonFlagArgs[0]
+        
+        // 2. Optional custom output path, or default
+        let outputFilePath: String = {
+            if nonFlagArgs.count > 1 {
+                return nonFlagArgs[1]
+            } else {
+                // If not provided, create a file in current directory
+                let cwd = FileManager.default.currentDirectoryPath
+                var directoryName = URL(fileURLWithPath: targetDirectory).lastPathComponent
+                
+                if directoryName.isEmpty || directoryName == "." {
+                    directoryName = URL(fileURLWithPath: cwd).lastPathComponent
+                }
+                
+                return (cwd as NSString).appendingPathComponent("\(directoryName)_RepoContents.txt")
+            }
+        }()
+        
+        // Validate directory existence
+        var isDir: ObjCBool = false
+        guard FileManager.default.fileExists(atPath: targetDirectory, isDirectory: &isDir), isDir.boolValue else {
+            print("Error: The specified path \(targetDirectory) is not a directory or doesn't exist.")
+            exit(1)
+        }
+        
+        // Create output file
+        FileManager.default.createFile(atPath: outputFilePath, contents: nil, attributes: nil)
+        guard let fileHandle = FileHandle(forWritingAtPath: outputFilePath) else {
+            print("Error: Could not open file handle at \(outputFilePath)")
+            exit(1)
+        }
+        
+        // Header
+        let startHeader = "Repository export for directory: \(targetDirectory)\n"
+        if let data = startHeader.data(using: .utf8) {
+            fileHandle.write(data)
+        }
+        
+        // Process directory
+        processDirectory(
+            at: targetDirectory,
+            into: fileHandle,
+            omitHidden: omitHidden
+        )
+        
+        // Footer
+        let endNote = "\n=== End of repository export ===\n"
+        if let data = endNote.data(using: .utf8) {
+            fileHandle.write(data)
+        }
+        
+        fileHandle.closeFile()
+        print("Successfully created \(outputFilePath)")
+    }
+}
+
+/// Recursively scans a directory and writes file/directory info to the given `FileHandle`.
+/// Skips hidden items if `omitHidden == true`.
+func processDirectory(at path: String, into outputHandle: FileHandle, omitHidden: Bool) {
+    let fileManager = FileManager.default
+    
+    guard let enumerator = fileManager.enumerator(atPath: path) else {
+        print("Error enumerating path: \(path)")
+        return
+    }
+    
+    while let relativePath = enumerator.nextObject() as? String {
+        
+        // If omitting hidden, skip any path that has a dot-prefixed component
+        if omitHidden {
+            let components = relativePath.split(separator: "/")
+            if components.contains(where: { $0.hasPrefix(".") }) {
+                // Skip this entire path (and its children if it's a directory)
+                continue
+            }
+        }
+        
+        let fullPath = (path as NSString).appendingPathComponent(relativePath)
+        
+        var isSubDir: ObjCBool = false
+        if fileManager.fileExists(atPath: fullPath, isDirectory: &isSubDir) {
+            // Write a header for each item
+            if let headerData = "\n=== \(fullPath) ===\n".data(using: .utf8) {
+                outputHandle.write(headerData)
+            }
+            
+            if isSubDir.boolValue {
+                // It's a directory
+                if let dirData = "[Directory]\n".data(using: .utf8) {
+                    outputHandle.write(dirData)
+                }
+            } else {
+                // It's a file
+                do {
+                    let contents = try String(contentsOfFile: fullPath, encoding: .utf8)
+                    if let contentsData = contents.data(using: .utf8) {
+                        outputHandle.write(contentsData)
+                    }
+                } catch {
+                    if let errorData = "[Could not read file: \(error)]\n".data(using: .utf8) {
+                        outputHandle.write(errorData)
+                    }
+                }
+            }
+        }
+    }
+}
+
+=== End of repository export ===

@@ -1,0 +1,6 @@
+# Ignore all .xcodeproj directories and their contents
+**/*.xcodeproj/*
+
+# Optional: Keep specific Xcode project files if needed
+!**/*.xcodeproj/project.pbxproj
+!**/*.xcodeproj/xcshareddata/
