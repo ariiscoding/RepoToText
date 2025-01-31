@@ -22,8 +22,8 @@ let package = Package(
             name: "RepoToText",
             dependencies: [
                 // List target dependencies if needed
-            ],
-            path: "Sources/RepoToText" 
+            ]
+//            path: "Sources/RepoToText" 
         )
     ]
 )

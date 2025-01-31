@@ -1,0 +1,12 @@
+{
+  "": {
+    "dependencies": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.d",
+    "object": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.o",
+    "swift-dependencies": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/master.swiftdeps"
+  },
+  "/Users/arihe/Developer/RepoToText/Sources/RepoToText.swift": {
+    "object": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swift.o",
+    "swiftmodule": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText~partial.swiftmodule",
+    "swift-dependencies": "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swiftdeps"
+  }
+}

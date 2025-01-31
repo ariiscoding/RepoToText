@@ -1,0 +1,66 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "RepoToText-arm64-apple-macosx15.0-release.module": ["<RepoToText-arm64-apple-macosx15.0-release.module>"]
+  "main": ["<RepoToText-arm64-apple-macosx15.0-release.module>","<repototext-arm64-apple-macosx15.0-release.exe>"]
+  "repototext-arm64-apple-macosx15.0-release.exe": ["<repototext-arm64-apple-macosx15.0-release.exe>"]
+  "test": ["<RepoToText-arm64-apple-macosx15.0-release.module>","<repototext-arm64-apple-macosx15.0-release.exe>"]
+default: "main"
+nodes:
+  "/Users/arihe/Developer/RepoToText/Sources/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/arihe/Developer/RepoToText/Sources/RepoToText.swift"]
+    outputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/sources"]
+    description: "Write auxiliary file /Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/sources"
+
+  "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swift.o"]
+    outputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext.product/Objects.LinkFileList"
+
+  "/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"]
+    outputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt"
+
+  "<RepoToText-arm64-apple-macosx15.0-release.module>":
+    tool: phony
+    inputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swift.o","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/Modules/RepoToText.swiftmodule"]
+    outputs: ["<RepoToText-arm64-apple-macosx15.0-release.module>"]
+
+  "<repototext-arm64-apple-macosx15.0-release.exe>":
+    tool: phony
+    inputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext"]
+    outputs: ["<repototext-arm64-apple-macosx15.0-release.exe>"]
+
+  "C.RepoToText-arm64-apple-macosx15.0-release.module":
+    tool: shell
+    inputs: ["/Users/arihe/Developer/RepoToText/Sources/RepoToText.swift","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/swift-version--58304C5D6DBC2206.txt","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/sources"]
+    outputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swift.o","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/Modules/RepoToText.swiftmodule"]
+    description: "Compiling Swift Module 'RepoToText' (1 sources)"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-module-name","RepoToText","-emit-dependencies","-emit-module","-emit-module-path","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/Modules/RepoToText.swiftmodule","-output-file-map","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/output-file-map.json","-whole-module-optimization","-num-threads","16","-c","@/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/sources","-I","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/Modules","-target","arm64-apple-macosx10.15","-O","-j16","-DSWIFT_PACKAGE","-module-cache-path","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","RepoToText_main","-parse-as-library","-color-diagnostics","-swift-version","6","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g","-Xcc","-isysroot","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-Xcc","-F","-Xcc","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-Xcc","-fPIC","-Xcc","-g","-package-name","repototext"]
+
+  "C.repototext-arm64-apple-macosx15.0-release.exe":
+    tool: shell
+    inputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/RepoToText.build/RepoToText.swift.o","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext.product/Objects.LinkFileList"]
+    outputs: ["/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext"]
+    description: "Linking ./.build/arm64-apple-macosx/release/repototext"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc","-L","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release","-o","/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext","-module-name","repototext","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-dead_strip","-Xlinker","-alias","-Xlinker","_RepoToText_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/arihe/Developer/RepoToText/.build/arm64-apple-macosx/release/repototext.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-5.5/macosx","-target","arm64-apple-macosx10.15","-sdk","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-I","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-L","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib","-g"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/arihe/Developer/RepoToText/Sources/","/Users/arihe/Developer/RepoToText/Package.swift","/Users/arihe/Developer/RepoToText/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

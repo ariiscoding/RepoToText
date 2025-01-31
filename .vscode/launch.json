@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:RepoToText}",
+            "name": "Debug repototext",
+            "program": "${workspaceFolder:RepoToText}/.build/debug/repototext",
+            "preLaunchTask": "swift: Build Debug repototext"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:RepoToText}",
+            "name": "Release repototext",
+            "program": "${workspaceFolder:RepoToText}/.build/release/repototext",
+            "preLaunchTask": "swift: Build Release repototext"
+        }
+    ]
+}
