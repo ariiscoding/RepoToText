@@ -23,7 +23,7 @@ let package = Package(
             dependencies: [
                 // List target dependencies if needed
             ],
-            path: "Sources/RepoToText" // the folder containing main.swift
+            path: "Sources/RepoToText" 
         )
     ]
 )

@@ -1,5 +1,3 @@
-//#!/usr/bin/env swift
-
 import Foundation
 
 @main
@@ -22,9 +20,8 @@ struct RepoToText {
                 // If user explicitly provides output file
                 return arguments[2]
             } else {
-                // If not provided, create a file in current directory.
-                // Use a name based on the directory's last component,
-                // but handle the case where it might be "." or empty.
+                // If not provided, create a file in current directory
+                // named <DirectoryName>_RepoContents.txt
                 let cwd = FileManager.default.currentDirectoryPath
                 var directoryName = URL(fileURLWithPath: targetDirectory).lastPathComponent
                 
@@ -43,23 +40,23 @@ struct RepoToText {
             exit(1)
         }
         
-        // MARK: - Creating and Writing to Output File
+        // Create output file
         FileManager.default.createFile(atPath: outputFilePath, contents: nil, attributes: nil)
         guard let fileHandle = FileHandle(forWritingAtPath: outputFilePath) else {
             print("Error: Could not open file handle at \(outputFilePath)")
             exit(1)
         }
         
-        // Write initial header
+        // Header
         let startHeader = "Repository export for directory: \(targetDirectory)\n"
         if let data = startHeader.data(using: .utf8) {
             fileHandle.write(data)
         }
         
-        // Process directory (see function below)
+        // Process directory
         processDirectory(at: targetDirectory, into: fileHandle)
         
-        // End note
+        // Footer
         let endNote = "\n=== End of repository export ===\n"
         if let data = endNote.data(using: .utf8) {
             fileHandle.write(data)
@@ -85,27 +82,24 @@ func processDirectory(at path: String, into outputHandle: FileHandle) {
         var isSubDir: ObjCBool = false
         if fileManager.fileExists(atPath: fullPath, isDirectory: &isSubDir) {
             // Write a header for each item
-            let header = "\n=== \(fullPath) ===\n"
-            if let headerData = header.data(using: .utf8) {
+            if let headerData = "\n=== \(fullPath) ===\n".data(using: .utf8) {
                 outputHandle.write(headerData)
             }
             
             if isSubDir.boolValue {
-                // If it's a directory, just note it
-                let dirNote = "[Directory]\n"
-                if let dirData = dirNote.data(using: .utf8) {
+                // It's a directory
+                if let dirData = "[Directory]\n".data(using: .utf8) {
                     outputHandle.write(dirData)
                 }
             } else {
-                // If it's a file, read contents and append to output
+                // It's a file
                 do {
                     let contents = try String(contentsOfFile: fullPath, encoding: .utf8)
                     if let contentsData = contents.data(using: .utf8) {
                         outputHandle.write(contentsData)
                     }
                 } catch {
-                    let errorMsg = "[Could not read file: \(error)]\n"
-                    if let errorData = errorMsg.data(using: .utf8) {
+                    if let errorData = "[Could not read file: \(error)]\n".data(using: .utf8) {
                         outputHandle.write(errorData)
                     }
                 }

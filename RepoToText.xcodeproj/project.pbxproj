@@ -25,9 +25,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C15FFAEE2D4B7EBF009F8FA6 /* RepoToText */ = {
+		C15FFAEE2D4B7EBF009F8FA6 /* Sources */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RepoToText;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -47,7 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				C15FFB142D4CBA81009F8FA6 /* Package.swift */,
-				C15FFAEE2D4B7EBF009F8FA6 /* RepoToText */,
+				C15FFAEE2D4B7EBF009F8FA6 /* Sources */,
 				C15FFAED2D4B7EBF009F8FA6 /* Products */,
 				C15FFAFA2D4B7F1B009F8FA6 /* README.md */,
 			);
@@ -77,7 +77,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C15FFAEE2D4B7EBF009F8FA6 /* RepoToText */,
+				C15FFAEE2D4B7EBF009F8FA6 /* Sources */,
 			);
 			name = RepoToText;
 			packageProductDependencies = (
